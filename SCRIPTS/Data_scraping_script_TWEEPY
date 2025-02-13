@@ -1,0 +1,29 @@
+## The below Python script is TWEEPY. It is a library that automates the retrieval of tweets from specific X (Twitter) users. 
+## It is dependent on a connection to the Twitter API, utilizing a specific bearer token for authentication, then fetches user IDs based on usernames, subsequently retrieving and printing a specified number of tweets for each user. 
+## The script itself is designed to withstand multiple usernames, which the quantity of such can be customized to different amounts of tweets per user. 
+## Overall, the script is significantly useful for efficiently analyzing multitudes of data from particular Twitter accounts.
+
+
+import tweepy #imports the TWEEPY library, allowing the rest of the code to interact with X (Twitter).
+
+bearer_token = 'SPECIFIC BEARER TOKEN' #here, a specific bearer token is assigned to the variable bearer_token. It's a form of verification, which one find's in their X Devloper Portal.
+
+client = tweepy.Client(bearer_token=bearer_token) #this creates the variable client using the token above, which is used to push requests to the X API.
+
+usernames = ['USERNAME'] #in this string, define and insert the specific (list of) username(s), based on the individual you want to extract tweets from on X.
+
+def get_user_id(username): #this function takes a username as the input and returns the corresponding user ID by calling the X API.
+    user = client.get_user(username=username)
+    return user.data.id
+
+def fetch_tweets(user_id, max_results=5): #function used to fetch tweets for a given user ID, based on a max_result parameter. For our project, the max was 3 to 5 tweets pulled for each user.
+    tweets = client.get_users_tweets(id=user_id, max_results=max_results)
+    return tweets.data
+
+for username in usernames: # this function loops through each username in the usernames=['USERNAME'] list to pull and print tweets. For most extractions, only one username was inputted into the list, as X's API was restrictive in total amount of extractions per minute. 
+    user_id = get_user_id(username)
+    tweets = fetch_tweets(user_id)
+    for tweet in tweets:
+        print(f'@{username}: {tweet.text}\n')
+
+# In brevity, the above code: 1) connects to the X API, using a specific bearer token; 2) Identifies and converts X usernames to user IDs; 3) retrieves a set number of tweets for each user ID; 4) runs through usernames (IDs) and processes tweets; 5) outputs (prints) tweets with specific username.
