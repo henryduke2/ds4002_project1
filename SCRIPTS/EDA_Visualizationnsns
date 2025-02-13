@@ -1,0 +1,35 @@
+## The below scripts relate to the EDA portion of our project, where we investigated different factors and variables within our dataset of extracted tweets.
+## The order of such scripts with plots are: 
+## 1) Histogram of Average Tweet Length of Recruits; 
+## 2) Scatterplot showing the correlation of Tweet Length Star Rating (XOS);
+## 3) Stacked Bar Chart Number of Recruits by State and XOS Rating
+
+##  1) HISTOGRAM
+# Importing the necessary libraries. Pandas for data wrangling, subequently matplotlib for plotting/making the visuals.
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Reads the tweet data from an uploaded CSV file into a pandas DataFrame. 
+data = pd.read_csv('Extracted Twitter Data - All_Recruits.csv')
+
+# The below filters the dataset to exclude tweets from one user, 'MarlenBright5', as a manual error occured when pulling data from such user (too many tweets extracted, which skewed the data/was not consistent with the rest of recruit data). 
+filtered_data = data[data['User'] != 'MarlenBright5'] 
+
+# Calculates and outputs the length (by character count) of each tweet, grouped by specific user, from the above filtered dataset, "filtered_data".
+user_avg_tweet_length = filtered_data.groupby('User')['Tweet'].apply(lambda x: x.str.len().mean()).reset_index(name='Average Tweet Length')
+
+# Sorts and orders the filtered data from the CSV file, by average tweet length in descending order, for easier visualization and understanding.
+user_avg_tweet_length = user_avg_tweet_length.sort_values(by='Average Tweet Length', ascending=False)
+
+# The remaining code below involves the second imported library, and creates a histogram on the above.
+plt.figure(figsize=(12, 8))
+bars = plt.bar(user_avg_tweet_length['User'], user_avg_tweet_length['Average Tweet Length'], color='orange', edgecolor='black')
+
+plt.xlabel('X Handle (Username)')
+plt.ylabel('Average Tweet Length (characters)')
+plt.title('Average Tweet Length by each Recruit')
+plt.xticks(rotation=90)  # Rotate the usernames on the x-axis for better readability
+
+plt.grid(True, which='both', axis='y', linestyle='--', linewidth=0.5, color='grey')  # Add horizontal grid lines for y-axis
+
+plt.show()
