@@ -37,7 +37,9 @@ Recruit_data: Data on each high school recruit, including X username, player nam
 
 Established_data: Data on established "gritty" players, including X username, player name, and tweet.
 
-VADER_scores: Database with VADER scores achieved from sentiment analysis.
+Recruit_VADER_scores: Database with recruit VADER scores achieved from sentiment analysis.
+
+Established_VADER_scores: Database with VADER scores from established players achieved from sentiment analysis.
 
 ### OUTPUT
 
