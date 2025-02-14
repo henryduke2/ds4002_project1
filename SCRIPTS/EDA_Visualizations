@@ -2,7 +2,7 @@
 ## The order of such scripts with plots are: 
 ## 1) Histogram of Average Tweet Length of Recruits; 
 ## 2) Scatterplot showing the correlation of Tweet Length Star Rating (XOS);
-## 3) Stacked Bar Chart Number of Recruits by State and XOS Rating
+## 3) Stacked Bar Chart of Number of Recruits by State and XOS Rating
 
 ##  1) HISTOGRAM
 # Importing the necessary libraries. Pandas for data wrangling, subequently matplotlib for plotting/making the visuals.
@@ -32,4 +32,46 @@ plt.xticks(rotation=90)  # Rotate the usernames on the x-axis for better readabi
 
 plt.grid(True, which='both', axis='y', linestyle='--', linewidth=0.5, color='grey')  # Add horizontal grid lines for y-axis
 
+plt.show()
+
+## 2) SCATTERPLOT
+# Importing necessary libraries.
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Loads in the data from the uploaded file into a dataframe, "data".
+data = pd.read_csv('Extracted Twitter Data - All_Recruits.csv') #here, insert the specific .csv file name
+
+# Calculates the length of each tweet, by character
+data['Tweet Length'] = data['Tweet'].apply(len)
+
+# Groups the data by XOS rating (star rating) and then calculates the avg. tweet length for each rating, 1-5.
+rating_stats = data.groupby('XOS_Rating').agg({
+    'Tweet Length': 'mean'
+}).reset_index()
+
+# Produces correlation coefficient for the grouped data on XOS ratings and tweet length
+correlation = rating_stats['Tweet Length'].corr(rating_stats['XOS_Rating'])
+
+# the below code produces the scatterplot, and also lists the specific characteristics/details wanted in the scatterplot visual.
+plt.figure(figsize=(10, 6))
+plt.scatter(rating_stats['XOS_Rating'], rating_stats['Tweet Length'], alpha=0.7, color='orange', s=100)
+plt.title('Scatter Plot of Average Tweet Length vs. XOS Rating')
+plt.xlabel('XOS Rating')
+plt.ylabel('Average Tweet Length')
+plt.grid(True)
+plt.show()
+
+## 3) STACKED BAR CHART
+
+data['Count'] = 1 #adds new column to dataframe, 'Count'.
+recruits_by_state_rating = data.pivot_table(index='State', columns='XOS_Rating', values='Count', aggfunc='sum', fill_value=0) #groups data by state and XOS rating, with an aggregate of each
+
+# the rest of the code creates the stacked bar chart, with specific details for visualization customization. Of note, state is on the X and stacked is the XOS rating.
+recruits_by_state_rating.plot(kind='bar', stacked=True, figsize=(12, 8))
+plt.title('Number of Recruits by State and XOS Rating')
+plt.xlabel('State')
+plt.ylabel('Number of Recruits')
+plt.xticks(rotation=45)
+plt.legend(title='XOS Rating')
 plt.show()
