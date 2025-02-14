@@ -43,8 +43,10 @@ STAT_results: Results of statistical tests ran
 
 ## Reproducing Results
 
-To replicate results from this project, begin by extracting data using the free X API and the 1_Data_Extraction script. Replace the bearer_token variable with unique bearer token in the X Developer profile. Generate recruit data for high school recruits using the usernames provided in the Recruit_names data file. Generate established data for established gritty players using the usernames provided in the Established_names data file. The tweets pulled from X should be copied into the file containing additional user information, as seen in the Recruit_data and Established_data files. Perform exploratory data analysis on this data using the EDA_script and find trends.
+To replicate results from this project, begin by extracting data using the free X API and the 1_Data_Extraction script. Replace the bearer_token variable with unique bearer token in the X Developer profile. Generate recruit data for high school recruits using the usernames provided in the Recruit_names data file. Generate established data for established gritty players using the usernames provided in the Established_names data file. The tweets pulled from X should be copied into the file containing additional user information, as seen in the Recruit_Data and Established_Data files. Perform exploratory data analysis on this data using the 2_EDA_script and find trends.
 
-Once the database of tweets is established, VADER sentiment analysis can be performed using the VADER_script. Load the Recruit_data and Established_data into the VADER_script and save the results as the VADER_scores csv. 
+Once the database of tweets is established, VADER sentiment analysis can be performed using the 3_VADER_and_Stat_script. Load the Recruit_Data and Established_Data into the VADER_script and generate VADER scores for each tweet. Using a Mann-Whitney test, check if there is significant difference in scores between recruits and established players. If significance is found, use this to establish a benchmark for what makes a "gritty" player. The benchmark will distinguish gritty players from other players and return a list of players recommended for recruitment.
+
+Within the 3_VADER_and_Stat_script, perform the ANOVA analysis on XOS star rating versus sentiment score to check if the XOS star system also captures grit, or if sentiment doesn't differ significantly between star levels. 
 
 
