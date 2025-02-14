@@ -37,6 +37,8 @@ Established_VADER: Database with VADER scores from established players achieved 
 
 ### OUTPUT
 
+EDA_Plots: Plots involving our exploratory data analyses
+
 VADER_scores: Composite seniment scores obtained through the VADER_script
 
 STAT_results: Results of statistical tests ran
