@@ -27,17 +27,13 @@ MIT License dictating how this data and analysis can be used.
 
 ### DATA
 
-Raw_Recruit_data: List of recruits as provided by UVA football team
+Recruit_Data: Data on each high school football recruit, including X username, player name, XOS star rating, hometown, and tweet.
 
-Raw_Established_data: List of established players as provided by UVA football team
+Established_Data: Data on established "gritty" players, including X username, player name, and tweet.
 
-Recruit_X_data: Data on each high school recruit, including X username, player name, XOS star rating, hometown, and tweet.
+Recruit_VADER: Database with recruit VADER scores achieved from sentiment analysis.
 
-Established_X_data: Data on established "gritty" players, including X username, player name, and tweet.
-
-Recruit_VADER_scores: Database with recruit VADER scores achieved from sentiment analysis.
-
-Established_VADER_scores: Database with VADER scores from established players achieved from sentiment analysis.
+Established_VADER: Database with VADER scores from established players achieved from sentiment analysis.
 
 ### OUTPUT
 
