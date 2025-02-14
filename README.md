@@ -23,9 +23,7 @@ MIT License dictating how this data and analysis can be used.
 
 2_EDA_script: Script used to conduct exploratory data analysis and discern trends within the player data.
 
-3_VADER_script: Script used to perform sentiment analysis, returning a sentiment score for each tweet extracted.
-
-4_Stat_script: Script used to conduct statistical analysis of the VADER scores, including a t-test and an ANOVA analysis.
+3_VADER_and_Stat_script: Script used to perform sentiment analysis, returning a sentiment score for each tweet extracted, as well as the script used to conduct statistical analysis of the VADER scores, including a t-test, ANOVA analysis, Mann-Whitney U, and a Shapiro-Wilk test.
 
 ### DATA
 
